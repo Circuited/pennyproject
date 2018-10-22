@@ -1,0 +1,14 @@
+filelocation <- file.choose()
+first5k <- read.csv(filelocation, nrows = 5000)
+classes <- sapply(first5k, class)
+taball <- read.csv(filelocation, colClasses = classes)
+library(lubridate)
+first5k$datadate <- ymd(first5k$datadate)
+taball$datadate <- ymd(taball$datadate)
+
+#finding uniquedates
+library(zoo)
+uniquedates <- unique(as.Date(first5k$datadate))
+
+vol.companies <- tabal 
+
