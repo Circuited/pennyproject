@@ -12,8 +12,8 @@ uniquedates <- unique(as.Date(first5k$datadate))
 
 #Cleaning dataset,keeping only complete data and saving that 
 taball1 <- taball[complete.cases(taball$prccd),]
-(table(taball1$tic) == 252) 
-Alldaystrade <- (table(taball1$tic) == 252)
+(table(taball1$tic) == 250) 
+Alldaystrade <- (table(taball1$tic) == 250)
 Alldaystrade1 <- which(Alldaystrade == TRUE)
 write.csv(Alldaystrade1, file = filelocation)
 
