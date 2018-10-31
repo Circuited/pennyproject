@@ -1,6 +1,7 @@
 filelocation<- file.choose()
 first5k <- read.csv(filelocation, nrows = 5000)
 classes <- sapply(first5k, class)
+classes[5:6] <- "numeric" 
 
 #Make sure the classes are correct. Above code may not be able to succesfully model the classes 
 taball <- read.csv(filelocation, colClasses = classes)
@@ -18,13 +19,12 @@ uniquecompanies <- unique(taball$tic)
 uniquecompanies <- as.character(uniquecompanies)
 
 
-#Plotting graph for each company 
+###Plotting graph for each company 
+
+#Creating space for 3 graphs 
 par(mfrow=c(3,1))
-i = 1
 
-i <- i + 1
-specificcompany <- taball[taball$tic == uniquecompanies[i],]
-
+#Funtion to provide daily return 
 dailyreturn <- function(closeprice)
 {
   resultlength <- length(closeprice)
@@ -34,11 +34,18 @@ dailyreturn <- function(closeprice)
   {
     result[i,1] <- (closeprice[i+1] - closeprice[i])*100/closeprice[i]
   }
-      result
+  result
 }
 
+#Initiate graph maker
+i = 1
+
+#Run Graphs!
+
+i <- i + 1
+specificcompany <- taball[taball$tic == uniquecompanies[i],]
 result <- dailyreturn(specificcompany$prccd)
  
-plot(specificcompany$datadate, specificcompany$cshtrd, type ="l")
-plot(specificcompany$datadate, specificcompany$prccd, type ="l")
-plot(1:249, result$V1, type ="l")
+plot(specificcompany$datadate, specificcompany$cshtrd)
+plot(specificcompany$datadate, specificcompany$prccd)
+plot(specificcompany$datadate, specificcompany$prccd*specificcompany$cshoc, type ="l")
