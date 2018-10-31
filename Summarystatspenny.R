@@ -1,6 +1,8 @@
 filelocation<- file.choose()
 first5k <- read.csv(filelocation, nrows = 5000)
 classes <- sapply(first5k, class)
+
+#Make sure the classes are correct. Above code may not be able to succesfully model the classes 
 taball <- read.csv(filelocation, colClasses = classes)
 library(lubridate)
 first5k$datadate <- ymd(first5k$datadate)
@@ -9,11 +11,13 @@ taball$datadate <- ymd(taball$datadate)
 #finding uniquedates
 library(zoo)
 uniquedates <- unique(as.Date(first5k$datadate))
+lenuniquedates <- length(uniquedates)
 
+N
 #Cleaning dataset,keeping only complete data and saving that 
 taball1 <- taball[complete.cases(taball$prccd),]
-(table(taball1$tic) == 250) 
-Alldaystrade <- (table(taball1$tic) == 250)
+(table(taball1$tic) == lenuniquedates) 
+Alldaystrade <- (table(taball1$tic) == lenuniquedates)
 Alldaystrade1 <- which(Alldaystrade == TRUE)
 write.csv(Alldaystrade1, file = filelocation)
 

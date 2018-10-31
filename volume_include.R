@@ -15,14 +15,14 @@ result <- data.frame(date=as.Date(character()),
                      percentilerank = numeric(), 
                      stringsAsFactors=FALSE) 
 
-specificdatedata <- numeric(length = 140)
-for(i in 1:140 ){
-  specificdatedata[i] <- median(taball[taball$datadate == as.Date(uniquedates[i]), 7 ])
+specificdatedata <- numeric(length = lenuniquedates)
+for(i in 1:lenuniquedates ){
+  specificdatedata[i] <- median(taball[taball$datadate == as.Date(uniquedates[i]),11  ])
 }
 
 taball1 <- taball[complete.cases(taball[ , 7]),]
 
-specificdatedata <- taball[taball$datadate == as.Date(uniquedates[1]),]
+specificdatedata <- taball[taball$datadate == as.Date(uniquedates[1]),11]
 sum(specificdatedata$cshtrd)
 quantile(specificdatedata$cshtrd, c(0.025, 0.975), na.rm = TRUE)
 boxplot(specificdatedata$cshtrd, na.rm = TRUE)
