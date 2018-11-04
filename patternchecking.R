@@ -48,4 +48,4 @@ result <- dailyreturn(specificcompany$prccd)
  
 plot(specificcompany$datadate, specificcompany$cshtrd)
 plot(specificcompany$datadate, specificcompany$prccd)
-plot(specificcompany$datadate, specificcompany$prccd*specificcompany$cshoc, type ="l")
+plot(specificcompany$datadate, specificcompany$prccd*specificcompany$cshtrd, type ="l")
