@@ -46,6 +46,11 @@ i <- i + 1
 specificcompany <- taball[taball$tic == uniquecompanies[i],]
 result <- dailyreturn(specificcompany$prccd)
  
-plot(specificcompany$datadate, specificcompany$cshtrd)
+plot(specificcompany$datadate, log(specificcompany$cshtrd+2),type ="b")
+#The 2 is added to log to avoid NA values
 plot(specificcompany$datadate, specificcompany$prccd)
 plot(specificcompany$datadate[-1], (result$V1), type ="b")
+
+xmat = cbind(log(specificcompany$cshtrd+2),specificcompany$prccd,specificcompany$prchd,specificcompany$prcld,specificcompany$prcod);
+cr=cor(xmat)
+cr
