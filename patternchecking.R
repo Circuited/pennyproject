@@ -43,7 +43,8 @@ i = 1
 #Run Graphs!
 
 i <- i + 1
-specificcompany <- taball[taball$tic == uniquecompanies[i],]
+#specificcompany <- taball[taball$tic == uniquecompanies[i],]
+specificcompany <- taball[taball$tic == specificcompanylist[2,1],]
 result <- dailyreturn(specificcompany$prccd)
  
 plot(specificcompany$datadate, log(specificcompany$cshtrd+2),type ="b")
@@ -51,6 +52,13 @@ plot(specificcompany$datadate, log(specificcompany$cshtrd+2),type ="b")
 plot(specificcompany$datadate, specificcompany$prccd)
 plot(specificcompany$datadate[-1], (result$V1), type ="b")
 
+
 xmat = cbind(log(specificcompany$cshtrd+2),specificcompany$prccd,specificcompany$prchd,specificcompany$prcld,specificcompany$prcod);
 cr=cor(xmat)
 cr
+
+par(mfrow=c(2,1))
+plot(log(specificcompany$cshtrd+2), specificcompany$prccd)
+plot(specificcompany$prccd,log(specificcompany$cshtrd+2))
+
+summary(lm(log(specificcompany$cshtrd+2)~specificcompany$prccd))
