@@ -38,7 +38,7 @@ dailyreturn <- function(closeprice)
 }
 
 #Initiate graph maker
-i = 1
+i = 0
 
 #Run Graphs!
 
@@ -61,8 +61,10 @@ xmat = cbind(log(specificcompany$cshtrd+2),specificcompany$prccd,specificcompany
 cr=cor(xmat)
 cr
 
+summary(lm(log(specificcompany$cshtrd+2)~specificcompany$prccd))
+
+
 par(mfrow=c(2,1))
 plot(log(specificcompany$cshtrd+2), specificcompany$prccd)
 plot(specificcompany$prccd,log(specificcompany$cshtrd+2))
 
-summary(lm(log(specificcompany$cshtrd+2)~specificcompany$prccd))

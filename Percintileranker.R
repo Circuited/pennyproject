@@ -21,9 +21,9 @@ quantile(percentilecreator$avgmktcap, c(0.05,0.95), na.rm = TRUE)
 percentilelevels <- quantile(percentilecreator$avgmktcap, c(0.05,0.95), na.rm = TRUE)
 
 #Company with lower than 5%ile marketcap
-specificcompanylist <- percentilecreator[percentilecreator$avgmktcap <= percentilelevels[1],]
+#specificcompanylist <- percentilecreator[percentilecreator$avgmktcap <= percentilelevels[1],]
 
 #Company with higher than 95%ile marketcap
-#specificcompanylist <- percentilecreator[percentilecreator$avgmktcap >= percentilelevels[2],]
+specificcompanylist <- percentilecreator[percentilecreator$avgmktcap >= percentilelevels[2],]
 
 specificcompanylist <- specificcompanylist[complete.cases(specificcompanylist),] 

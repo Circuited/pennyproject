@@ -1,5 +1,4 @@
 filelocation<- file.choose()
-yearinput <- 2014
 idpennymonthbased <- function( filelocation,pennydef, yearinput){
   library(zoo)
   library(lubridate)
@@ -47,3 +46,5 @@ idpennymonthbased <- function( filelocation,pennydef, yearinput){
   listtic
 
 }
+
+idpennymonthbased(filelocation, 5, 2011)
