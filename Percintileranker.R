@@ -4,22 +4,26 @@ percentilecalc <- (taball$cshoc*taball$prccd)
 
 taball <- cbind(taball, percentilecalc)
 
-percentilecreator <- data.frame(V1 = character(),
-                                V2 = numeric(),
+percentilecreator <- data.frame(tic = character(),
+                                avgmktcap = numeric(),
                                 stringsAsFactors=FALSE)
 
 #retreive unique companies from pattern checking
-for(i in 1:length(uniquecompanies))
+for(l in 1:length(uniquecompanies))
 {
-  specificcompany <- taball[taball$tic == uniquecompanies[i],]
-  percentilecreator[i,1]<- uniquecompanies[i]
-  percentilecreator[i,2]<- mean(specificcompany$percentilecalc)
+  specificcompany <- taball[taball$tic == uniquecompanies[l],]
+  percentilecreator[l,1]<- uniquecompanies[l]
+  percentilecreator[l,2]<- mean(specificcompany$percentilecalc)
 }
 
-quantile(percentilecreator$V2, c(0.05,0.95), na.rm = TRUE)
+quantile(percentilecreator$avgmktcap, c(0.05,0.95), na.rm = TRUE)
 
-percentilelevels <- quantile(percentilecreator$V2, c(0.05,0.95), na.rm = TRUE)
+percentilelevels <- quantile(percentilecreator$avgmktcap, c(0.05,0.95), na.rm = TRUE)
 
-specificcompanylist <- percentilecreator[percentilecreator$V2 <= percentilelevels[1],]
- 
+#Company with lower than 5%ile marketcap
+specificcompanylist <- percentilecreator[percentilecreator$avgmktcap <= percentilelevels[1],]
+
+#Company with higher than 95%ile marketcap
+#specificcompanylist <- percentilecreator[percentilecreator$avgmktcap >= percentilelevels[2],]
+
 specificcompanylist <- specificcompanylist[complete.cases(specificcompanylist),] 

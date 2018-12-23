@@ -44,10 +44,14 @@ i = 1
 
 i <- i + 1
 #specificcompany <- taball[taball$tic == uniquecompanies[i],]
-specificcompany <- taball[taball$tic == specificcompanylist[2,1],]
+
+#Get specific company list from Percentileranker.R
+
+specificcompany <- taball[taball$tic == specificcompanylist[i,1],]
 result <- dailyreturn(specificcompany$prccd)
  
 plot(specificcompany$datadate, log(specificcompany$cshtrd+2),type ="b")
+
 #The 2 is added to log to avoid NA values
 plot(specificcompany$datadate, specificcompany$prccd)
 plot(specificcompany$datadate[-1], (result$V1), type ="b")
